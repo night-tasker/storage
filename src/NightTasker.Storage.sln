@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{8B13A0AB-99CF-4570-B40B-33BAFF34E9E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NightTasker.Storage.Presentation", "Presentation\NightTasker.Storage.Presentation\NightTasker.Storage.Presentation.csproj", "{0E103165-0537-4CDB-911F-41D0AC1500C9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{313E9BD9-5B5B-4CBE-B684-670DBA90F94B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NightTasker.Storage.Domain", "Core\NightTasker.Storage.Domain\NightTasker.Storage.Domain.csproj", "{4FA2E0AA-4073-45E9-A0C8-6A94C16ACC05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NightTasker.Storage.Application", "Core\NightTasker.Storage.Application\NightTasker.Storage.Application.csproj", "{0CC86BB8-040B-4681-9C05-56E8F7A67583}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{43D9175B-CABA-4D38-A7B9-56D0096A97FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NightTasker.Storage.Infrastructure.Persistence", "Infrastructure\NightTasker.Storage.Infrastructure.Persistence\NightTasker.Storage.Infrastructure.Persistence.csproj", "{D20E3DCC-B916-4FB5-A9E0-6F8D2B1128A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NightTasker.Storage.Infrastructure.Messaging", "Infrastructure\NightTasker.Storage.Infrastructure.Messaging\NightTasker.Storage.Infrastructure.Messaging.csproj", "{E2FFDAF8-4C31-4049-9545-562A0EADDDF7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0E103165-0537-4CDB-911F-41D0AC1500C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E103165-0537-4CDB-911F-41D0AC1500C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E103165-0537-4CDB-911F-41D0AC1500C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E103165-0537-4CDB-911F-41D0AC1500C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FA2E0AA-4073-45E9-A0C8-6A94C16ACC05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FA2E0AA-4073-45E9-A0C8-6A94C16ACC05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FA2E0AA-4073-45E9-A0C8-6A94C16ACC05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FA2E0AA-4073-45E9-A0C8-6A94C16ACC05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CC86BB8-040B-4681-9C05-56E8F7A67583}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CC86BB8-040B-4681-9C05-56E8F7A67583}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CC86BB8-040B-4681-9C05-56E8F7A67583}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CC86BB8-040B-4681-9C05-56E8F7A67583}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D20E3DCC-B916-4FB5-A9E0-6F8D2B1128A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D20E3DCC-B916-4FB5-A9E0-6F8D2B1128A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D20E3DCC-B916-4FB5-A9E0-6F8D2B1128A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D20E3DCC-B916-4FB5-A9E0-6F8D2B1128A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2FFDAF8-4C31-4049-9545-562A0EADDDF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2FFDAF8-4C31-4049-9545-562A0EADDDF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2FFDAF8-4C31-4049-9545-562A0EADDDF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2FFDAF8-4C31-4049-9545-562A0EADDDF7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0E103165-0537-4CDB-911F-41D0AC1500C9} = {8B13A0AB-99CF-4570-B40B-33BAFF34E9E7}
+		{4FA2E0AA-4073-45E9-A0C8-6A94C16ACC05} = {313E9BD9-5B5B-4CBE-B684-670DBA90F94B}
+		{0CC86BB8-040B-4681-9C05-56E8F7A67583} = {313E9BD9-5B5B-4CBE-B684-670DBA90F94B}
+		{D20E3DCC-B916-4FB5-A9E0-6F8D2B1128A4} = {43D9175B-CABA-4D38-A7B9-56D0096A97FF}
+		{E2FFDAF8-4C31-4049-9545-562A0EADDDF7} = {43D9175B-CABA-4D38-A7B9-56D0096A97FF}
+	EndGlobalSection
+EndGlobal
