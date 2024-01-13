@@ -7,7 +7,7 @@ namespace NightTasker.Storage.Infrastructure.Persistence.Repository.Common;
 public class UnitOfWork(IApplicationDbAccessor applicationDbAccessor) : IUnitOfWork
 {
     /// <inheritdoc />
-    public IUploadRepository UploadRepository { get; } = new UploadRepository(applicationDbAccessor.Uploads);
+    public IStorageFileRepository StorageFileRepository { get; } = new StorageFileRepository(applicationDbAccessor.Files);
 
     /// <inheritdoc /> 
     public Task SaveChanges(CancellationToken cancellationToken)

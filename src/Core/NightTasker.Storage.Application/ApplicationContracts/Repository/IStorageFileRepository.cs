@@ -4,9 +4,9 @@ using NightTasker.Storage.Domain.Entities;
 namespace NightTasker.Storage.Application.ApplicationContracts.Repository;
 
 /// <summary>
-/// Репозиторий для <see cref="Upload"/>.
+/// Репозиторий для <see cref="StorageFile"/>.
 /// </summary>
-public interface IUploadRepository : IRepository<Upload, Guid>
+public interface IStorageFileRepository : IRepository<StorageFile, Guid>
 {
     
 }

@@ -9,9 +9,9 @@ namespace NightTasker.Storage.Infrastructure.Persistence.Contracts;
 public interface IApplicationDbAccessor
 {
     /// <summary>
-    /// Загрузки.
+    /// Файлы.
     /// </summary>
-    ApplicationDbSet<Upload, Guid> Uploads { get; }
+    ApplicationDbSet<StorageFile, Guid> Files { get; }
     
     /// <summary>
     /// Сохранить изменения.

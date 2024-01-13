@@ -4,9 +4,30 @@ using NightTasker.Storage.Infrastructure.Persistence.Configuration;
 
 namespace NightTasker.Storage.Presentation.Configuration;
 
+/// <summary>
+/// Класс для методов расширения для WebApplication.
+/// </summary>
 public static class WebApplicationExtensions
 {
-    public static async Task ApplyDatabaseMigrations(
+    /// <summary>
+    /// Конфигурация Swagger
+    /// </summary>
+    /// <param name="app">WebApplication</param>
+    public static void ConfigureSwagger(this WebApplication app)
+    {
+        app.UseSwagger()
+            .UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+            });
+    }
+
+    /// <summary>
+    /// Применение миграций базы данных.
+    /// </summary>
+    /// <param name="app">WebApplication.</param>
+    /// <param name="cancellationToken">Токен отмены.</param>
+    public static async Task ApplyDatabaseMigrationsAsync(
         this WebApplication app,
         CancellationToken cancellationToken)
     {

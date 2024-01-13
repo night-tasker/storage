@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using NightTasker.Storage.Application.ApplicationContracts.FileStorage;
 
 namespace NightTasker.Storage.Application.Configuration;
 

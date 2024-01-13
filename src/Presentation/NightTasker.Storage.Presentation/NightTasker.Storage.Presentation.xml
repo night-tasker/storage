@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NightTasker.Storage.Presentation</name>
+    </assembly>
+    <members>
+        <member name="M:NightTasker.Storage.Presentation.Configuration.ServiceCollectionExtensions.AddMapper(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Добавить Маппер.
+            </summary>
+            <param name="services">Коллекция сервисов.</param>
+        </member>
+        <member name="M:NightTasker.Storage.Presentation.Configuration.ServiceCollectionExtensions.AddSwagger(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Добавить Swagger.
+            </summary>
+            <param name="services">Коллекция сервисов.</param>
+        </member>
+        <member name="M:NightTasker.Storage.Presentation.Configuration.ServiceCollectionExtensions.AddValidation(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Добавить валидацию.
+            </summary>
+            <param name="services">Коллекция сервисов.</param>
+        </member>
+        <member name="M:NightTasker.Storage.Presentation.Configuration.ServiceCollectionExtensions.AddDefaultCorsPolicy(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Добавить дефолтные настройки CORS.
+            </summary>
+            <param name="services">Коллекция сервисов.</param>
+        </member>
+        <member name="T:NightTasker.Storage.Presentation.Configuration.WebApplicationExtensions">
+            <summary>
+            Класс для методов расширения для WebApplication.
+            </summary>
+        </member>
+        <member name="M:NightTasker.Storage.Presentation.Configuration.WebApplicationExtensions.ConfigureSwagger(Microsoft.AspNetCore.Builder.WebApplication)">
+            <summary>
+            Конфигурация Swagger
+            </summary>
+            <param name="app">WebApplication</param>
+        </member>
+        <member name="M:NightTasker.Storage.Presentation.Configuration.WebApplicationExtensions.ApplyDatabaseMigrationsAsync(Microsoft.AspNetCore.Builder.WebApplication,System.Threading.CancellationToken)">
+            <summary>
+            Применение миграций базы данных.
+            </summary>
+            <param name="app">WebApplication.</param>
+            <param name="cancellationToken">Токен отмены.</param>
+        </member>
+        <member name="T:NightTasker.Storage.Presentation.Constants.ApiConstants">
+            <summary>
+            Константы для настройки АПИ.
+            </summary>
+        </member>
+        <member name="T:NightTasker.Storage.Presentation.Constants.CorsConstants">
+            <summary>
+            Константы для настройки CORS.
+            </summary>
+        </member>
+        <member name="T:NightTasker.Storage.Presentation.Controllers.StorageFileController">
+            <summary>
+            Контроллер для работы с файлами в хранилище.
+            </summary>
+        </member>
+        <member name="M:NightTasker.Storage.Presentation.Controllers.StorageFileController.#ctor(MediatR.IMediator,MapsterMapper.IMapper)">
+            <summary>
+            Контроллер для работы с файлами в хранилище.
+            </summary>
+        </member>
+        <member name="M:NightTasker.Storage.Presentation.Controllers.StorageFileController.DownloadFile(NightTasker.Storage.Presentation.Requests.StorageFile.DownloadFileRequest,System.Threading.CancellationToken)">
+            <summary>
+            Эндпоинт для скачивания файла.
+            </summary>
+            <param name="request">Запрос на скачивание файла.</param>
+            <param name="cancellationToken">Токен отмены.</param>
+            <returns>Скачиваемый файл.</returns>
+        </member>
+        <member name="M:NightTasker.Storage.Presentation.Controllers.StorageFileController.UploadFile(System.Collections.Generic.List{NightTasker.Storage.Presentation.Requests.StorageFile.UploadFileRequest},System.Threading.CancellationToken)">
+            <summary>
+            Эндпоинт для загрузки файлов.
+            </summary>
+            <param name="files">Запрос на загрузку файлов.</param>
+            <param name="cancellationToken">Токен отмены.</param>
+            <returns>ИД загруженных файлов.</returns>
+        </member>
+        <member name="T:NightTasker.Storage.Presentation.Endpoints.StorageFileEndpoints">
+            <summary>
+            Пути эндпоинтов для работы с файлами в хранилище.
+            </summary>
+        </member>
+        <member name="F:NightTasker.Storage.Presentation.Endpoints.StorageFileEndpoints.StorageFileResource">
+            <summary>
+            Путь до эндпоинтов для работы с файлами в хранилище (основной).
+            </summary>
+        </member>
+        <member name="F:NightTasker.Storage.Presentation.Endpoints.StorageFileEndpoints.DownloadFile">
+            <summary>
+            Путь до эндпоинта для скачивания файла.
+            </summary>
+        </member>
+        <member name="F:NightTasker.Storage.Presentation.Endpoints.StorageFileEndpoints.UploadFile">
+            <summary>
+            Путь до эндпоинта для загрузки файла.
+            </summary>
+        </member>
+        <member name="T:NightTasker.Storage.Presentation.Implementations.ApplicationDbAccessor">
+            <inheritdoc /> 
+        </member>
+        <member name="P:NightTasker.Storage.Presentation.Implementations.ApplicationDbAccessor.Files">
+            <inheritdoc />
+        </member>
+        <member name="M:NightTasker.Storage.Presentation.Implementations.ApplicationDbAccessor.SaveChanges(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:NightTasker.Storage.Presentation.Profiles.StorageFileProfile">
+            <summary>
+            Профиль для маппинга файлов.
+            </summary>
+        </member>
+        <member name="T:NightTasker.Storage.Presentation.Requests.StorageFile.DownloadFileRequest">
+            <summary>
+            Запрос на загрузку файла.
+            </summary>
+            <param name="BucketName">Имя хранилища.</param>
+            <param name="FileName">Имя файла.</param>
+        </member>
+        <member name="M:NightTasker.Storage.Presentation.Requests.StorageFile.DownloadFileRequest.#ctor(System.String,System.String)">
+            <summary>
+            Запрос на загрузку файла.
+            </summary>
+            <param name="BucketName">Имя хранилища.</param>
+            <param name="FileName">Имя файла.</param>
+        </member>
+        <member name="P:NightTasker.Storage.Presentation.Requests.StorageFile.DownloadFileRequest.BucketName">
+            <summary>Имя хранилища.</summary>
+        </member>
+        <member name="P:NightTasker.Storage.Presentation.Requests.StorageFile.DownloadFileRequest.FileName">
+            <summary>Имя файла.</summary>
+        </member>
+        <member name="T:NightTasker.Storage.Presentation.Requests.StorageFile.UploadFileRequest">
+            <summary>
+            Запрос на загрузку файла.
+            </summary>
+            <param name="File">Файл.</param>
+            <param name="BasketName">Имя хранилища.</param>
+        </member>
+        <member name="M:NightTasker.Storage.Presentation.Requests.StorageFile.UploadFileRequest.#ctor(Microsoft.AspNetCore.Http.IFormFile,System.String,System.String)">
+            <summary>
+            Запрос на загрузку файла.
+            </summary>
+            <param name="File">Файл.</param>
+            <param name="BasketName">Имя хранилища.</param>
+        </member>
+        <member name="P:NightTasker.Storage.Presentation.Requests.StorageFile.UploadFileRequest.File">
+            <summary>Файл.</summary>
+        </member>
+        <member name="P:NightTasker.Storage.Presentation.Requests.StorageFile.UploadFileRequest.BasketName">
+            <summary>Имя хранилища.</summary>
+        </member>
+        <member name="T:NightTasker.Storage.Presentation.Responses.StorageFile.UploadFileResponse">
+            <summary>
+            Ответ на запрос на загрузку файла.
+            </summary>
+            <param name="FileId">ИД загруженного файла.</param>
+        </member>
+        <member name="M:NightTasker.Storage.Presentation.Responses.StorageFile.UploadFileResponse.#ctor(System.Guid)">
+            <summary>
+            Ответ на запрос на загрузку файла.
+            </summary>
+            <param name="FileId">ИД загруженного файла.</param>
+        </member>
+        <member name="T:NightTasker.Storage.Presentation.Validators.StorageFile.DownloadFileRequestValidator">
+            <summary>
+            Валидатор для <see cref="T:NightTasker.Storage.Presentation.Requests.StorageFile.DownloadFileRequest"/>.
+            </summary>
+        </member>
+    </members>
+</doc>

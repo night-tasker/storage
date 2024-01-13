@@ -23,5 +23,9 @@
     <ItemGroup>
       <ProjectReference Include="..\..\Core\NightTasker.Storage.Application\NightTasker.Storage.Application.csproj" />
     </ItemGroup>
+    
+    <ItemGroup>
+      <Folder Include="EntityConfigurations\" />
+    </ItemGroup>
 
 </Project>

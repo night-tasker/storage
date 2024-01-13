@@ -14,11 +14,11 @@ public class ApplicationDbAccessor : IApplicationDbAccessor
     public ApplicationDbAccessor(ApplicationDbContext dbContext)
     {
         _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
-        Uploads = new ApplicationDbSet<Upload, Guid>(_dbContext);
+        Files = new ApplicationDbSet<StorageFile, Guid>(_dbContext);
     }
     
     /// <inheritdoc />
-    public ApplicationDbSet<Upload, Guid> Uploads { get; }
+    public ApplicationDbSet<StorageFile, Guid> Files { get; }
     
     private IQueryable<T> EmptyQuery<T>(IQueryable<T> query) => Enumerable.Empty<T>().AsQueryable();
 

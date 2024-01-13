@@ -5,8 +5,8 @@
 /// </summary>
 public interface IUnitOfWork
 {
-    /// <inheritdoc cref="IUploadRepository"/>
-    IUploadRepository UploadRepository { get; }
+    /// <inheritdoc cref="IStorageFileRepository"/>
+    IStorageFileRepository StorageFileRepository { get; }
     
     /// <summary>
     /// Сохранить изменения.

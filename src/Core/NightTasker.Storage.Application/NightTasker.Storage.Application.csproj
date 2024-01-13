@@ -16,4 +16,11 @@
         <PackageReference Include="NightTasker.Common.Messaging" Version="1.0.3" />
     </ItemGroup>
 
+
+
+
+
+
+
+
 </Project>
