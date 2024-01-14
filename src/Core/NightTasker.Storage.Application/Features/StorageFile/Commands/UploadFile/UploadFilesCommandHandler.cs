@@ -7,12 +7,12 @@ namespace NightTasker.Storage.Application.Features.StorageFile.Commands.UploadFi
 /// <summary>
 /// Хэндлер запроса <see cref="UploadFilesCommand"/>.
 /// </summary>
-public class UploadFilesCommandHandler(IStorageService storageService) : IRequestHandler<UploadFilesCommand>
+public class UploadFilesCommandHandler(IStorageService storageService) : IRequestHandler<UploadFilesCommand, IReadOnlyCollection<string>>
 {
     private readonly IStorageService _storageService =
         storageService ?? throw new ArgumentNullException(nameof(storageService));
 
-    public Task Handle(UploadFilesCommand request, CancellationToken cancellationToken)
+    public Task<IReadOnlyCollection<string>> Handle(UploadFilesCommand request, CancellationToken cancellationToken)
     {
         var files = request.Files;
         return _storageService.UploadFiles(files, cancellationToken);

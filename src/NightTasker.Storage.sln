@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NightTasker.Storage.Infrast
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NightTasker.Storage.Infrastructure.FileStorage", "Infrastructure\NightTasker.Storage.Infrastructure.FileStorage\NightTasker.Storage.Infrastructure.FileStorage.csproj", "{02568355-F5D5-4731-9D22-2084346F491C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NightTasker.Storage.Infrastructure.Grpc", "Infrastructure\NightTasker.Storage.Infrastructure.Grpc\NightTasker.Storage.Infrastructure.Grpc.csproj", "{F7EB8A72-30DA-4B5F-BD2A-0CADFDE1B472}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +50,10 @@ Global
 		{02568355-F5D5-4731-9D22-2084346F491C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02568355-F5D5-4731-9D22-2084346F491C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02568355-F5D5-4731-9D22-2084346F491C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7EB8A72-30DA-4B5F-BD2A-0CADFDE1B472}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7EB8A72-30DA-4B5F-BD2A-0CADFDE1B472}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7EB8A72-30DA-4B5F-BD2A-0CADFDE1B472}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7EB8A72-30DA-4B5F-BD2A-0CADFDE1B472}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{0E103165-0537-4CDB-911F-41D0AC1500C9} = {8B13A0AB-99CF-4570-B40B-33BAFF34E9E7}
@@ -56,5 +62,6 @@ Global
 		{D20E3DCC-B916-4FB5-A9E0-6F8D2B1128A4} = {43D9175B-CABA-4D38-A7B9-56D0096A97FF}
 		{E2FFDAF8-4C31-4049-9545-562A0EADDDF7} = {43D9175B-CABA-4D38-A7B9-56D0096A97FF}
 		{02568355-F5D5-4731-9D22-2084346F491C} = {43D9175B-CABA-4D38-A7B9-56D0096A97FF}
+		{F7EB8A72-30DA-4B5F-BD2A-0CADFDE1B472} = {43D9175B-CABA-4D38-A7B9-56D0096A97FF}
 	EndGlobalSection
 EndGlobal

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using NightTasker.Storage.Infrastructure.Grpc.Implementations.Server.StorageFile;
 using NightTasker.Storage.Infrastructure.Persistence;
 using NightTasker.Storage.Infrastructure.Persistence.Configuration;
 
@@ -37,5 +38,10 @@ public static class WebApplicationExtensions
         {
             await context.MigrateAsync(cancellationToken);
         }
+    }
+
+    public static void MapGrpcServices(this WebApplication app)
+    {
+        app.MapGrpcService<StorageFileGrpcService>();
     }
 }

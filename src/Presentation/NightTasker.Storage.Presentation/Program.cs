@@ -1,6 +1,7 @@
 using NightTasker.Common.Core.Exceptions.Middlewares;
 using NightTasker.Storage.Application.Configuration;
 using NightTasker.Storage.Infrastructure.FileStorage.Configuration;
+using NightTasker.Storage.Infrastructure.Grpc.Configuration;
 using NightTasker.Storage.Infrastructure.Messaging.Configuration;
 using NightTasker.Storage.Infrastructure.Persistence.Configuration;
 using NightTasker.Storage.Presentation.Configuration;
@@ -8,6 +9,8 @@ using NightTasker.Storage.Presentation.Constants;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.ConfigureHttp1AndHttp2();
 
 builder.Services.AddControllers();
 
@@ -18,6 +21,7 @@ builder.Services
     .RegisterPersistenceServices(builder.Configuration)
     .RegisterMessagingServices(builder.Configuration)
     .RegisterFileStorageServices(builder.Configuration)
+    .RegisterGrpcServices()
     .RegisterApiServices(builder.Configuration);
 
 if (builder.Environment.IsDevelopment())
@@ -47,5 +51,7 @@ app.UseCors(CorsConstants.DefaultCorsPolicyName);
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapGrpcServices();
 
 app.Run();

@@ -12,7 +12,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Grpc.AspNetCore" Version="2.57.0"/>
         <PackageReference Include="Mapster" Version="7.4.0" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0">
@@ -29,9 +28,11 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\Infrastructure\NightTasker.Storage.Infrastructure.FileStorage\NightTasker.Storage.Infrastructure.FileStorage.csproj" />
+      <ProjectReference Include="..\..\Infrastructure\NightTasker.Storage.Infrastructure.Grpc\NightTasker.Storage.Infrastructure.Grpc.csproj" />
       <ProjectReference Include="..\..\Infrastructure\NightTasker.Storage.Infrastructure.Messaging\NightTasker.Storage.Infrastructure.Messaging.csproj" />
       <ProjectReference Include="..\..\Infrastructure\NightTasker.Storage.Infrastructure.Persistence\NightTasker.Storage.Infrastructure.Persistence.csproj" />
     </ItemGroup>
+
 
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

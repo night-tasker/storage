@@ -45,7 +45,7 @@ public class StorageService(IMinioClient minioClient) : Application.ApplicationC
     }
 
     /// <inheritdoc />
-    public async Task UploadFiles(
+    public async Task<IReadOnlyCollection<string>> UploadFiles(
         IReadOnlyCollection<UploadFileDto> files,
         CancellationToken cancellationToken)
     {
@@ -60,6 +60,8 @@ public class StorageService(IMinioClient minioClient) : Application.ApplicationC
                 .WithObjectSize(file.Length);
             await _minioClient.PutObjectAsync(objectArgs, cancellationToken);
         }
+        
+        return files.Select(x => x.FileName).ToList();
     }
 
     /// <summary>

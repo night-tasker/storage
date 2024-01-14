@@ -21,5 +21,5 @@ public interface IStorageService
     /// </summary>
     /// <param name="files">Файлы для загрузки.</param>
     /// <param name="cancellationToken">Токен отмены.</param>
-    Task UploadFiles(IReadOnlyCollection<UploadFileDto> files, CancellationToken cancellationToken);
+    Task<IReadOnlyCollection<string>> UploadFiles(IReadOnlyCollection<UploadFileDto> files, CancellationToken cancellationToken);
 }

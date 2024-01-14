@@ -13,8 +13,6 @@ public class StorageFileProfile : IRegister
 {
     public void Register(TypeAdapterConfig config)
     {
-        config.ForType<DownloadFileResult, DownloadedFileDto>()
-            .Map(dest => dest.Stream, src => src.Stream);
         config.ForType<DownloadFileRequest, DownloadFileQuery>();
 
         config.ForType<UploadFileRequest, UploadFileDto>()
@@ -24,5 +22,7 @@ public class StorageFileProfile : IRegister
                 src.File.ContentType,
                 src.File.Length,
                 src.BasketName));
+
+        config.ForType<Common.Grpc.StorageFiles.DownloadFileRequest, DownloadFileQuery>();
     }
 }

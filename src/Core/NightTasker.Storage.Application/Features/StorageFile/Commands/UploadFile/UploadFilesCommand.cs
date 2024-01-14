@@ -8,4 +8,4 @@ namespace NightTasker.Storage.Application.Features.StorageFile.Commands.UploadFi
 /// </summary>
 /// <param name="Files">Файлы для загрузки.</param>
 public record UploadFilesCommand(
-    IReadOnlyCollection<UploadFileDto> Files) : IRequest;
+    IReadOnlyCollection<UploadFileDto> Files) : IRequest<IReadOnlyCollection<string>>;
