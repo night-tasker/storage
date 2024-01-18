@@ -22,4 +22,12 @@ public interface IStorageService
     /// <param name="files">Файлы для загрузки.</param>
     /// <param name="cancellationToken">Токен отмены.</param>
     Task<IReadOnlyCollection<string>> UploadFiles(IReadOnlyCollection<UploadFileDto> files, CancellationToken cancellationToken);
+
+    /// <summary>
+    /// Получить ссылку на файл.
+    /// </summary>
+    /// <param name="bucketName">Имя хранилища.</param>
+    /// <param name="fileName">Имя файла.</param>
+    /// <returns>Ссылка на файл.</returns>
+    Task<string> GetFileUrl(string bucketName, string fileName);
 }

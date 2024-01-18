@@ -5,6 +5,7 @@ using NightTasker.Common.Grpc.StorageFiles;
 using NightTasker.Storage.Application.Features.StorageFile.Commands.UploadFile;
 using NightTasker.Storage.Application.Features.StorageFile.Dtos;
 using NightTasker.Storage.Application.Features.StorageFile.Queries.DownloadFile;
+using NightTasker.Storage.Application.Features.StorageFile.Queries.GetFileUrl;
 
 namespace NightTasker.Storage.Infrastructure.Grpc.Implementations.Server.StorageFile;
 
@@ -65,5 +66,23 @@ public class StorageFileGrpcService(
         };
         
         return uploadFileResponse;
-    ;}
+    }
+    
+    /// <summary>
+    /// Получить ссылку на файл.
+    /// </summary>
+    /// <param name="request">Запрос на получение ссылки.</param>
+    /// <param name="context">Конекст запроса.</param>
+    /// <returns>Ответ с ссылкой на файл.</returns>
+    public override async Task<GetFileUrlResponse> GetFileUrl(GetFileUrlRequest request, ServerCallContext context)
+    {
+        var query = new GetFileUrlQuery(request.BucketName, request.FileName);
+        var result = await _mediator.Send(query, context.CancellationToken);
+        var response = new GetFileUrlResponse
+        {
+            Url = result
+        };
+        
+        return response;
+    }
 }

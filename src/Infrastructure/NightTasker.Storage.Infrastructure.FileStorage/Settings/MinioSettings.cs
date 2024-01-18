@@ -3,7 +3,17 @@
 /// <summary>
 /// Настройки подключения к Minio.
 /// </summary>
-/// <param name="Endpoint">Адрес эндпоинта.</param>
-/// <param name="AccessKey">Ключ доступа.</param>
-/// <param name="SecretKey">Ключ-секрет.</param>
-public record MinioSettings(string Endpoint, string AccessKey, string SecretKey);
+public class MinioSettings
+{
+    /// <summary>Адрес эндпоинта.</summary>
+    public string? Endpoint { get; set; }
+
+    /// <summary>Ключ доступа.</summary>
+    public string? AccessKey { get; set; }
+
+    /// <summary>Ключ-секрет.</summary>
+    public string? SecretKey { get; set; }
+
+    /// <summary>Время жизни ссылок.</summary>
+    public int PreSignedObjectsExpiryRange { get; set; }
+}

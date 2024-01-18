@@ -13,7 +13,7 @@ public static class WebApplicationBuilderExtensions
         var httpSettingsSection = configuration.GetSection(nameof(HttpSettings));
         var httpSettings = httpSettingsSection.Get<HttpSettings>()!;
         builder.Services.Configure<HttpSettings>(httpSettingsSection);
-        
+
         builder.WebHost.ConfigureKestrel(options =>
         {
             options.Listen(IPAddress.Any, int.Parse(httpSettings.Http1ListeningPort!), listenOptions =>
@@ -26,5 +26,7 @@ public static class WebApplicationBuilderExtensions
                 listenOptions.Protocols = HttpProtocols.Http2;
             });
         });
+        
+        builder.WebHost.UseKestrel();
     }
 }

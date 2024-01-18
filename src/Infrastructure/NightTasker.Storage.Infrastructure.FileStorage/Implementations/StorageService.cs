@@ -1,16 +1,21 @@
-﻿using Minio;
+﻿using Microsoft.Extensions.Options;
+using Minio;
 using Minio.DataModel.Args;
 using Minio.Exceptions;
 using NightTasker.Storage.Application.Exceptions.NotFound;
 using NightTasker.Storage.Application.Features.StorageFile.Dtos;
 using NightTasker.Storage.Application.Models.StorageFile;
+using NightTasker.Storage.Infrastructure.FileStorage.Settings;
 
 namespace NightTasker.Storage.Infrastructure.FileStorage.Implementations;
 
 /// <inheritdoc />
-public class StorageService(IMinioClient minioClient) : Application.ApplicationContracts.FileStorage.IStorageService
+public class StorageService(
+    IMinioClient minioClient,
+    IOptions<MinioSettings> minioSettings) : Application.ApplicationContracts.FileStorage.IStorageService
 {
     private readonly IMinioClient _minioClient = minioClient ?? throw new ArgumentNullException(nameof(minioClient));
+    private readonly MinioSettings _minioSettings = minioSettings.Value ?? throw new ArgumentNullException(nameof(minioSettings));
 
     /// <inheritdoc />
     public async Task<DownloadFileResult> DownloadFile(string bucketName, string fileName)
@@ -32,7 +37,6 @@ public class StorageService(IMinioClient minioClient) : Application.ApplicationC
             memoryStream.Seek(offset: 0, SeekOrigin.Begin);
             var result = new DownloadFileResult(memoryStream, objectStat.ContentType);
             return result;
-
         }
         catch (BucketNotFoundException)
         {
@@ -62,6 +66,29 @@ public class StorageService(IMinioClient minioClient) : Application.ApplicationC
         }
         
         return files.Select(x => x.FileName).ToList();
+    }
+    
+    public async Task<string> GetFileUrl(string bucketName, string fileName)
+    {
+        try
+        {
+            var preSignedGetObjectArgs = new PresignedGetObjectArgs()
+                .WithBucket(bucketName)
+                .WithObject(fileName)
+                .WithExpiry(_minioSettings.PreSignedObjectsExpiryRange);
+        
+            var url = await _minioClient.PresignedGetObjectAsync(preSignedGetObjectArgs);
+
+            return url;
+        }
+        catch (BucketNotFoundException)
+        {
+            throw new StorageFileNotFoundException(fileName);
+        }
+        catch (ObjectNotFoundException)
+        {
+            throw new StorageFileNotFoundException(fileName);
+        }
     }
 
     /// <summary>
