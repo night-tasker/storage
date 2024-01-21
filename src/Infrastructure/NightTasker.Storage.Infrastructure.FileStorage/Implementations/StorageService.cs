@@ -40,11 +40,11 @@ public class StorageService(
         }
         catch (BucketNotFoundException)
         {
-            throw new StorageFileNotFoundException(fileName);
+            throw new StorageFileNotFoundException(bucketName, fileName);
         }
         catch (ObjectNotFoundException)
         {
-            throw new StorageFileNotFoundException(fileName);
+            throw new StorageFileNotFoundException(bucketName, fileName);
         }
     }
 
@@ -67,8 +67,9 @@ public class StorageService(
         
         return files.Select(x => x.FileName).ToList();
     }
-    
-    public async Task<string> GetFileUrl(string bucketName, string fileName)
+
+    /// <inheritdoc />
+    public async Task<string> GetFileUrl(string bucketName, string fileName, CancellationToken cancellationToken)
     {
         try
         {
@@ -78,17 +79,42 @@ public class StorageService(
                 .WithExpiry(_minioSettings.PreSignedObjectsExpiryRange);
         
             var url = await _minioClient.PresignedGetObjectAsync(preSignedGetObjectArgs);
-
             return url;
         }
         catch (BucketNotFoundException)
         {
-            throw new StorageFileNotFoundException(fileName);
+            throw new StorageFileNotFoundException(bucketName, fileName);
         }
         catch (ObjectNotFoundException)
         {
-            throw new StorageFileNotFoundException(fileName);
+            throw new StorageFileNotFoundException(bucketName, fileName);
         }
+    }
+
+    /// <inheritdoc />
+    public async Task<IReadOnlyCollection<FileWithUrlDto>> GetFilesUrl(
+        IReadOnlyCollection<GetFileDto> files, CancellationToken cancellationToken)
+    {
+        var result = new List<FileWithUrlDto>();
+        
+        foreach (var file in files)
+        {
+            var url = await GetFileUrl(file.BucketName, file.FileName, cancellationToken);
+            var dto = new FileWithUrlDto(file.FileName, file.BucketName, url);
+            result.Add(dto);
+        }
+
+        return result;
+    }
+
+    /// <inheritdoc />
+    public Task RemoveFile(string bucketName, string fileName, CancellationToken cancellationToken)
+    {
+        var removeObjectArgs = new RemoveObjectArgs()
+            .WithBucket(bucketName)
+            .WithObject(fileName);
+        
+        return _minioClient.RemoveObjectAsync(removeObjectArgs, cancellationToken);
     }
 
     /// <summary>

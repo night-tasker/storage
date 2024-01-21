@@ -1,8 +1,10 @@
 ﻿using Mapster;
+using NightTasker.Common.Grpc.StorageFiles;
 using NightTasker.Storage.Application.Features.StorageFile.Dtos;
 using NightTasker.Storage.Application.Features.StorageFile.Queries.DownloadFile;
 using NightTasker.Storage.Application.Models.StorageFile;
-using NightTasker.Storage.Presentation.Requests.StorageFile;
+using DownloadFileRequest = NightTasker.Storage.Presentation.Requests.StorageFile.DownloadFileRequest;
+using UploadFileRequest = NightTasker.Storage.Presentation.Requests.StorageFile.UploadFileRequest;
 
 namespace NightTasker.Storage.Presentation.Profiles;
 
@@ -24,5 +26,7 @@ public class StorageFileProfile : IRegister
                 src.BasketName));
 
         config.ForType<Common.Grpc.StorageFiles.DownloadFileRequest, DownloadFileQuery>();
+
+        config.ForType<FileWithUrlDto, FileUrlDto>();
     }
 }

@@ -2,10 +2,13 @@
 using MapsterMapper;
 using MediatR;
 using NightTasker.Common.Grpc.StorageFiles;
+using NightTasker.Storage.Application.Features.StorageFile.Commands.RemoveFile;
 using NightTasker.Storage.Application.Features.StorageFile.Commands.UploadFile;
 using NightTasker.Storage.Application.Features.StorageFile.Dtos;
 using NightTasker.Storage.Application.Features.StorageFile.Queries.DownloadFile;
+using NightTasker.Storage.Application.Features.StorageFile.Queries.GetFilesUrl;
 using NightTasker.Storage.Application.Features.StorageFile.Queries.GetFileUrl;
+using NightTasker.Storage.Application.Models.StorageFile;
 
 namespace NightTasker.Storage.Infrastructure.Grpc.Implementations.Server.StorageFile;
 
@@ -83,6 +86,45 @@ public class StorageFileGrpcService(
             Url = result
         };
         
+        return response;
+    }
+
+    /// <summary>
+    /// Получить ссылки на файлы.
+    /// </summary>
+    /// <param name="request">Запрос на получение ссылок на файлы.</param>
+    /// <param name="context">Конекст запроса.</param>
+    /// <returns>Ответ с ссылками на файлы.</returns>
+    public override async Task<GetFilesUrlResponse> GetFilesUrl(GetFilesUrlRequest request, ServerCallContext context)
+    {
+        var lookingForFiles = request.Files
+            .Select(x => new GetFileDto(x.BucketName, x.FileName))
+            .ToList();
+        
+        var query = new GetFilesUrlQuery(lookingForFiles);
+        var result = await _mediator.Send(query, context.CancellationToken);
+        var response = new GetFilesUrlResponse();
+        var responseFiles = _mapper.Map<IReadOnlyCollection<FileUrlDto>>(result);
+        response.Files.AddRange(responseFiles);
+        
+        return response;
+    }
+
+    /// <summary>
+    /// Удалить файл.
+    /// </summary>
+    /// <param name="request">Запрос на удаление файла.</param>
+    /// <param name="context">Конекст запроса.</param>
+    /// <returns>Результат удаления файла.</returns>
+    public override async Task<RemoveFileResponse> RemoveFile(RemoveFileRequest request, ServerCallContext context)
+    {
+        var query = new RemoveFileCommand(request.BucketName, request.FileName);
+        await _mediator.Send(query, context.CancellationToken);
+        var response = new RemoveFileResponse()
+        {
+            Success = true
+        };
+
         return response;
     }
 }

@@ -28,6 +28,23 @@ public interface IStorageService
     /// </summary>
     /// <param name="bucketName">Имя хранилища.</param>
     /// <param name="fileName">Имя файла.</param>
+    /// <param name="cancellationToken">Токен отмены.</param>
     /// <returns>Ссылка на файл.</returns>
-    Task<string> GetFileUrl(string bucketName, string fileName);
+    Task<string> GetFileUrl(string bucketName, string fileName, CancellationToken cancellationToken);
+    
+    /// <summary>
+    /// Получить ссылки на файлы.
+    /// </summary>
+    /// <param name="files">Файлы для получения ссылок.</param>
+    /// <param name="cancellationToken">Токен отмены.</param>
+    /// <returns>Ссылки на файлы.</returns>
+    Task<IReadOnlyCollection<FileWithUrlDto>> GetFilesUrl(IReadOnlyCollection<GetFileDto> files, CancellationToken cancellationToken);
+    
+    /// <summary>
+    /// Удалить файл.
+    /// </summary>
+    /// <param name="bucketName">Имя хранилища.</param>
+    /// <param name="fileName">Имя файла.</param>
+    /// <param name="cancellationToken">Токен отмены.</param>
+    Task RemoveFile(string bucketName, string fileName, CancellationToken cancellationToken);
 }

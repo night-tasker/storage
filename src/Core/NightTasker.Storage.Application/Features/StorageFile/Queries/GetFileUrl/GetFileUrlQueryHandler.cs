@@ -12,7 +12,7 @@ public class GetFileUrlQueryHandler(IStorageService storageService) : IRequestHa
 
     public async Task<string> Handle(GetFileUrlQuery request, CancellationToken cancellationToken)
     {
-        var result = await _storageService.GetFileUrl(request.BucketName, request.FileName);
+        var result = await _storageService.GetFileUrl(request.BucketName, request.FileName, cancellationToken);
         return result;
     }
 }
